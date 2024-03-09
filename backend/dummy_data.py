@@ -13,7 +13,6 @@ listings = db["listings"]
 if __name__ == "__main__":
     # listings.insert_one({
     #     "bookID": 1, # ISBN
-    #     "editionID": 4, # There can be several editions of the same book
     #     "title": "Introduction to Algorithms, Fourth Edition",
     #     "description": "A comprehensive update of the leading algorithms text, with new material on matchings in bipartite graphs, online algorithms, machine learning, and other topics.",
     #     "price": 150.00, # Market price (not our price)
@@ -23,7 +22,10 @@ if __name__ == "__main__":
     #         {
     #             "price": 60.00,
     #             "date": datetime.now(), # date of posting
-    #             "seller": 1,
+    #             "seller": {
+    #                 "id": 1,
+    #                 "username": "example"
+    #             },
     #             "condition": "new", # Either new or used
     #             "notes": None, # Optional string. Meant for things like "First page missing"
     #             "location": "Sheffield"
@@ -37,7 +39,7 @@ if __name__ == "__main__":
     #             "average": 40.23
     #         }
     #     ],
-    #     # "editions": [2, 3]  # If this is present, there MUST be corresponding listings in the db with the same version and book number
+    #     # "editions": [2, 3]  # If this is present, there MUST be corresponding listings in the db with the same ISBN
     # })
     # 
     # Bring some variations into the datetime by constructing it yourself eg

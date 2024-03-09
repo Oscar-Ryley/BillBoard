@@ -54,13 +54,13 @@ class Offer:
         self.__dict__.update(kwargs)
 
     @staticmethod
-    def from_listing(listing: Listing, id: bson.ObjectId):
+    def from_listing(listing: Listing, seller: int) -> Offer:
         for offer in listing.offers:
-            if offer["_id"] == id:
+            if offer["seller"] == seller:
                 offer["condition"] = Condition(offer["condition"])
                 return Offer(**offer)
             
-        raise OfferNotFound(f"Offer with ID {id} not found.")
+        raise OfferNotFound(f"Offer with ID {seller} not found.")
     
     @staticmethod
     def new(
@@ -71,10 +71,9 @@ class Offer:
         notes: str, 
         location: str, 
         date: datetime
-    ) -> None:
+    ) -> Offer:
         return Offer(
             bookID=listing.bookID,
-            editionID=listing.editionID,
             price=price,
             condition=condition,
             notes=notes,
