@@ -1,9 +1,10 @@
 from flask import Blueprint, request
 from .classes import Listing
+from re import findall
 
 search = Blueprint("search", __name__)
 
-@search.route("/search?query=<query>")
+@search.route("/search")
 def search_route():
     """
     Get all listings that match the query
@@ -32,7 +33,17 @@ def search_route():
     }
     """
 
-    query = request.args.get("query")
+    query: str = request.args.get("query")
+    
     return {
-        "results": Listing.search(query)
+        "results": [
+            listing.to_json()
+            for listing in Listing.all()
+            if (
+                query.lower() in listing.title.lower() or \
+                query.lower() in listing.description.lower() or \
+                findall(query.lower(), listing.title.lower()) or \
+                findall(query.lower(), listing.description.lower())
+            )
+        ]
     }

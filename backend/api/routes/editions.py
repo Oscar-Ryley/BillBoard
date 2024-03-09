@@ -9,5 +9,5 @@ def editions_route(id):
     Get all editions of a book using its "editions" fields
     """
     return {
-        "results": Listing.get_editions(id)
+        "results": [listing.to_json() for listing in Listing.get_editions(id)]
     }

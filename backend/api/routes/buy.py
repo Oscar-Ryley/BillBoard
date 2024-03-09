@@ -10,7 +10,7 @@ def buy_route():
 
     Request:
     {
-        ""id": "1", // ISBN
+        "id": "1", // ISBN
         "seller": 1
     }
     Response:

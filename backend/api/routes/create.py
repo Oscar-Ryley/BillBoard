@@ -23,8 +23,9 @@ def create_route():
         "success": true
     }
     """
-    Listing.add_offer(
-        Offer(
+    print(request.json)
+    Listing(request.json["bookID"]).add_offer(
+        Offer.new(
             **request.json # This is INSANELY insecure especially without authentication. But this is a hackathon. Fuck it we ball.
         )
     )
