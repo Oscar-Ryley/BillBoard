@@ -56,6 +56,10 @@ class Listing:
             "average": (sum([x["new"] for x in self.prices]) + sum([x["used"] for x in self.prices])) / (len(self.prices) * 2)  
         }
     
+    @staticmethod
+    def search(query: str) -> List[Listing]:
+        return [Listing(x) for x in listings.find({"title": {"$regex": query}})]
+    
     def add_offer(self, offer: Offer) -> None:
         listings.update_one({"bookID": self.bookID}, {"$push": {"offers": offer.to_json()}})
 
