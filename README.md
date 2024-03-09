@@ -16,9 +16,11 @@
 
 Our Team is made up of [https://github.com/Kile](https://github.com/Kile), [https://github.com/f2reninj5](https://github.com/f2reninj5), [https://github.com/mattsavin](https://github.com/mattsavin), and [https://github.com/Oscar-Ryley](https://github.com/Oscar-Ryley). The DurHack and DurHunt Dinos helped via the rubber duck debugging method.
 
-## Initial Ideas
+## The Vision for the Project
 
-Our Project Idea was based on the BlackRock Financial Accessibility Challenge and the DUCS Junior challenge surrounding university student applications.
+Student textbooks are expensive, and yet they become almost entirely useless when somebody graduates from a course. This does not fit the supply and demand expected from a regular economy. BillBoard is a marketplace, and a price comparison tool, for students to sell other students textbooks at the best prices possible. This makes knowledge more accessible, and allows students to make better financial decisions whilst pursuing knowledge. Some of the textbooks listed on the marketplace are even finance ones, making financial knowledge literally more accessible...
+
+Our Project Idea was based on the BlackRock Financial Accessibility Challenge and the DUCS Junior challenge surrounding applications targeted at university students.
 
 Initial Ideas about data were written out onto a whiteboard.
 
