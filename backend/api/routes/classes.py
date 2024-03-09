@@ -59,6 +59,18 @@ class Listing:
     def add_offer(self, offer: Offer) -> None:
         listings.update_one({"bookID": self.bookID}, {"$push": {"offers": offer.to_json()}})
 
+    def to_json(self):
+        return {
+            "id": self.bookID,
+            "title": self.title,
+            "description": self.description,
+            "image": self.image,
+            "marketPrize": self.price,
+            "prices": self.prices,
+            "offers": self.offers,
+            "editions": self.editions
+        }
+
 
 class Offer:
     bookID: str
