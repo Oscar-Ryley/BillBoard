@@ -1,0 +1,10 @@
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+table {
+    tr:nth-of-type(odd) {
+        background-color: #ccc;
+    }
+}

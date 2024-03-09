@@ -93,3 +93,8 @@ hr {
         cursor: pointer;
     }
 }
+
+.outline {
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-fill-color: transparent;
+}
