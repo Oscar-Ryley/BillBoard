@@ -8,6 +8,7 @@ def create_route():
     Request:
     {
         "bookID": 2,
+        "editionID": 1,
         "price": 80,
         "condition": "new",
         "notes": None,

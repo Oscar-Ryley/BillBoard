@@ -8,6 +8,7 @@ def listing_route(id):
     Response:
     {
         "id": 1,
+        "editionID": 1,
         "title": "Example Listing",
         "description": "This is an example listing.",
         "image": "https://example.com/image.jpg",
@@ -36,6 +37,11 @@ def listing_route(id):
                 "notes": "This is a note.",
                 "location": "Newcastle"
             }
+        ],
+        "editions": [
+            2,
+            3,
+            5
         ]
     }
     """
