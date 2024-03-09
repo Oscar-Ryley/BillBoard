@@ -1,8 +1,8 @@
 <table>
-    @for (listing of [{title:'book', author: 'someone'}, {title:'another book', author: 'someone'}, {title:'also book', author: 'someone'}, {title:'byu this book!', author: 'someone'}, {title:'bookbook', author: 'someone'}]; track $index) {
+    @for (listing of this.results; track $index) {
         <tr>
             <th>{{listing.title}}</th>
-            <td>{{listing.author}}</td>
+            <td>{{listing.id}}</td>
         </tr>
     }
 </table>

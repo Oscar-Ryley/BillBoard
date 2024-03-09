@@ -12,5 +12,7 @@ import { SearchComponent } from "./search/search.component";
   imports: [CommonModule, RouterOutlet, ListingComponent, SearchComponent]
 })
 export class AppComponent {
-  title = 'billboard';
+  public title = 'billboard';
+
+  constructor() {}
 }
