@@ -4,9 +4,10 @@
 }
 
 .listing-info {
-    display: grid;
+    display: flex;
+    flex-direction: row;
     max-width: 90%;
     margin: auto;
-    grid-template-columns: repeat(auto-fill, 20rem);
     gap: 1rem;
+    flex-wrap: wrap;
 }

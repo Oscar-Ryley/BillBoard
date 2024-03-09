@@ -1,11 +1,12 @@
 :host {
     display: flex;
     flex-direction: row;
+    margin: auto;
 }
 
 img {
-    height: 15rem;
-    width: 15rem;
+    height: 60vmin;
+    width: 60vmin;
     object-fit: contain;
 }
 
