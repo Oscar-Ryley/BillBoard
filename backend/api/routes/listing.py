@@ -12,6 +12,21 @@ def listing_route(id):
         "title": "Example Listing",
         "description": "This is an example listing.",
         "image": "https://example.com/image.jpg",
+        "marketPrize": 120.00,
+        prices: [
+            {
+                "date": "2021-01-01T12:00:00Z",
+                "new": 100.00,
+                "used": 90.00
+                "average": 95.00
+            },
+            {
+                "date": "2021-01-01T12:00:00Z",
+                "new": 100.00,
+                "used": 90.00
+                "average": 95.00
+            }
+        ],
         "offers": [
             {
                 "id": 1,
