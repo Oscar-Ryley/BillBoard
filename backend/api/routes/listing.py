@@ -1,5 +1,5 @@
 from flask import Blueprint
-from classes import Listing
+from .classes import Listing
 
 listing = Blueprint("listing", __name__)
 
