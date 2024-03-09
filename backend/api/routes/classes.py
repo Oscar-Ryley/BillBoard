@@ -68,6 +68,13 @@ class Listing:
     def add_offer(self, offer: Offer) -> None:
         listings.update_one({"bookID": self.bookID}, {"$push": {"offers": offer.to_json()}})
 
+    def remove_offer(self, offer: Offer) -> None:
+        for offer in self.offers:
+            if offer["seller"] == offer.seller:
+                del offer
+
+        listings.update_one({"bookID": self.bookID}, {"$set": {"offers": [offer.to_json() for offer in self.offers]}})
+
     def to_json(self):
         return {
             "id": self.bookID,
