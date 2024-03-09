@@ -1,4 +1,5 @@
 from flask import Blueprint
+from classes import Listing
 
 listing = Blueprint("listing", __name__)
 
@@ -61,4 +62,5 @@ def listing_route(id):
         ]
     }
     """
-    ...
+
+    return Listing(id).to_json()
