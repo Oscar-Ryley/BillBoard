@@ -31,6 +31,10 @@ class Listing:
         if not listings:
             raise BookNotFound(f"Book with ID {book_id} and version {book_version} not found.")
         
+        # Change offers into Offer objects
+        for offer in listings["offers"]:
+            offer = Offer.from_listing(self, offer["_id"]) # time complexity O(n^2) but this is a hackathon so who cares, it looks nice
+        
         self.__dict__.update(dict(listings)) # Convert all the keys in the dictionary to attributes of the class
 
     @property
@@ -53,6 +57,7 @@ class Offer:
     def from_listing(listing: Listing, id: bson.ObjectId):
         for offer in listing.offers:
             if offer["_id"] == id:
+                offer["condition"] = Condition(offer["condition"])
                 return Offer(**offer)
             
         raise OfferNotFound(f"Offer with ID {id} not found.")
