@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 export type Seller = {
@@ -23,9 +22,9 @@ export type Price = {
 };
 
 export type Listing = {
+  id: string;
   description: string;
   editions: string[];
-  id: string;
   image: string;
   marketPrize: number;
   offers: Offer[];
@@ -40,13 +39,22 @@ export type SearchResults = { results: Listing[]; };
 })
 export class ApiService {
   public url = 'http://127.0.0.1:5000';
+  public listing: Listing | undefined;
 
   constructor() {}
 
   public async search(query: string): Promise<SearchResults | null> {
     const response = await fetch(this.url + `/search?query=${query}`);
     if (!response) { return null; }
-    return response.json();
+    const body = await response.json();
+    return body as SearchResults;
+  }
+
+  public async getById(id: string): Promise<Listing | null> {
+    const response = await fetch(this.url + `/listing/${id}`);
+    if (!response) { return null; }
+    const body = await response.json();
+    return body as Listing;
   }
 
   public async all(): Promise<SearchResults | null> {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { ListingComponent } from "./listing/listing.component";
 import { SearchComponent } from "./search/search.component";
 
@@ -14,5 +14,9 @@ import { SearchComponent } from "./search/search.component";
 export class AppComponent {
   public title = 'billboard';
 
-  constructor() {}
+  constructor(private router: Router) {}
+
+  navigateHome() {
+    this.router.navigate(['']);
+  }
 }

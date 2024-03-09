@@ -4,7 +4,7 @@
 }
 
 table {
-    tr:nth-of-type(odd) {
-        background-color: #ccc;
+    tr {
+        border-bottom: solid 1px;
     }
 }
