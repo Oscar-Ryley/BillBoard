@@ -1,4 +1,5 @@
-from flask import Blueprint
+from flask import Blueprint, request
+from .classes import Listing
 
 search = Blueprint("search", __name__)
 
@@ -30,4 +31,8 @@ def search_route():
         ]
     }
     """
-    ...
+
+    query = request.args.get("query")
+    return {
+        "results": Listing.search(query)
+    }

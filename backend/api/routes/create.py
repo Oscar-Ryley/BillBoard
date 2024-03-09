@@ -1,4 +1,5 @@
-from flask import Blueprint
+from flask import Blueprint, request
+from .classes import Listing, Offer
 
 create = Blueprint("create", __name__)
 
@@ -22,5 +23,10 @@ def create_route():
         "success": true
     }
     """
-    
-    ...
+    Listing.add_offer(
+        Offer(
+            **request.json # This is INSANELY insecure especially without authentication. But this is a hackathon. Fuck it we ball.
+        )
+    )
+
+    return {"success": True}

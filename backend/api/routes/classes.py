@@ -35,7 +35,6 @@ class Listing:
     prices: List[Dict[str, Union[datetime, float]]]
     editions: List[str]
 
-
     def __init__(self, book_id: int):
         listings = listings.find_one({"bookID": book_id})
 
@@ -61,7 +60,7 @@ class Listing:
         return [Listing(x) for x in listings.find({"title": {"$regex": query}})]
     
     @staticmethod
-    def editions(book_id: str) -> List[Listing]:
+    def get_editions(book_id: str) -> List[Listing]:
         """Fetch data about the one book, find its editions, then return all those listings including the same book"""
         first = Listing(book_id)
         l = [Listing(x) for x in first.editions]
