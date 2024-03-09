@@ -19,7 +19,7 @@ def create_route():
     }
     Response:
     {
-        "id": "1"
+        "success": true
     }
     """
     

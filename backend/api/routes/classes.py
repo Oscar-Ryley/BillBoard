@@ -6,7 +6,7 @@ import json
 from enum import Enum
 from datetime import datetime
 
-with open("backend/config.json") as f:
+with open("config.json") as f:
     data = json.load(f)
     MONGO_DB = data["mongodb"]
 
@@ -63,7 +63,16 @@ class Listing:
     @staticmethod
     def editions(book_id: str) -> List[Listing]:
         """Fetch data about the one book, find its editions, then return all those listings including the same book"""
-        return [first:=Listing(book_id), [Listing(x) for x in first.editions]]
+        first = Listing(book_id)
+        l = [Listing(x) for x in first.editions]
+        if not first.bookID in [book.bookID for book in l]:
+            l.append(first)
+        # Let me explain why I do this lol. Initially I had thought a book may have an additional list
+        # containing alternative ISBNs of editions. Now I realise that list may make sense to also
+        # include its own ID. I want capabilities for both, so I'm doing this.
+
+        return l
+
     
     def add_offer(self, offer: Offer) -> None:
         listings.update_one({"bookID": self.bookID}, {"$push": {"offers": offer.to_json()}})
