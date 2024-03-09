@@ -5,6 +5,8 @@ create = Blueprint("create", __name__)
 @create.route("/create", methods=["POST"])
 def create_route():
     """
+    Creates a new listing in the db
+    
     Request:
     {
         "bookID": 2,

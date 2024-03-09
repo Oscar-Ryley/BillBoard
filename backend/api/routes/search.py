@@ -5,6 +5,8 @@ search = Blueprint("search", __name__)
 @search.route("/search?query=<query>")
 def search_route():
     """
+    Get all listings that match the query
+    
     Response:
     {
         "results": [

@@ -5,6 +5,8 @@ listing = Blueprint("listing", __name__)
 @listing.route("/listing/<id>")
 def listing_route(id):
     """
+    Get listings for a specific book and edition
+
     Response:
     {
         "id": 1,
