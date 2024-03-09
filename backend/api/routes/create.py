@@ -6,11 +6,10 @@ create = Blueprint("create", __name__)
 def create_route():
     """
     Creates a new listing in the db
-    
+
     Request:
     {
         "bookID": 2,
-        "editionID": 1,
         "price": 80,
         "condition": "new",
         "notes": None,
@@ -20,7 +19,7 @@ def create_route():
     }
     Response:
     {
-        "id": 1
+        "id": "1"
     }
     """
     ...

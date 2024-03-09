@@ -6,13 +6,12 @@ search = Blueprint("search", __name__)
 def search_route():
     """
     Get all listings that match the query
-    
+
     Response:
     {
         "results": [
             {
                 "id": 1,
-                "editionID": 1,
                 "title": "Example Listing",
                 "description": "This is an example listing.",
                 "price": 100.00,
@@ -22,7 +21,6 @@ def search_route():
 
             {
                 "id": 2,
-                "editionID": 2,
                 "title": "Example Listing 2",
                 "description": "This is another example listing.",
                 "price": 90.00,

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from pymongo import MongoClient, bson
+from pymongo import MongoClient
+from typing import List, Dict, Union
 import json
 from enum import Enum
 from datetime import datetime
@@ -24,16 +25,26 @@ class Condition(Enum):
     USED = "used"
 
 class Listing:
+    bookID: str
+    title: str
+    description: str
+    price: float # Maket price
+    image: str
+    date: datetime
+    offers: List[Offer]
+    prices: List[Dict[str, Union[datetime, float]]]
+    editions: List[str]
 
-    def __init__(self, book_id: int, book_version: int):
-        listings = listings.find_one({"bookID": book_id, "editionID": book_version})
+
+    def __init__(self, book_id: int):
+        listings = listings.find_one({"bookID": book_id})
 
         if not listings:
-            raise BookNotFound(f"Book with ID {book_id} and version {book_version} not found.")
+            raise BookNotFound(f"Book with ID {book_id} not found.")
         
         # Change offers into Offer objects
         for offer in listings["offers"]:
-            offer = Offer.from_listing(self, offer["_id"]) # time complexity O(n^2) but this is a hackathon so who cares, it looks nice
+            offer = Offer.from_listing(self, offer["seller"]) # time complexity O(n^2) but this is a hackathon so who cares, it looks nice
         
         self.__dict__.update(dict(listings)) # Convert all the keys in the dictionary to attributes of the class
 
@@ -46,10 +57,18 @@ class Listing:
         }
     
     def add_offer(self, offer: Offer) -> None:
-        listings.update_one({"_id": self._id}, {"$push": {"offers": offer.to_json()}})
+        listings.update_one({"bookID": self.bookID}, {"$push": {"offers": offer.to_json()}})
 
 
 class Offer:
+    bookID: str
+    price: float
+    condition: Condition
+    notes: str
+    location: str
+    date: datetime
+    seller: Dict[str, Union[int, str]]
+
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
 

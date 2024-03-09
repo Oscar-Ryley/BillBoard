@@ -8,7 +8,7 @@ Search for a query in the database. Returns a list of objects with the following
 {
     "results": [
         {
-            "id": 1, // ISBN
+            "id": "1", // ISBN
             "title": "Example Listing",
             "description": "This is an example listing.",
             "price": 100.00,
@@ -17,7 +17,7 @@ Search for a query in the database. Returns a list of objects with the following
         },
 
         {
-            "id": 2, // ISBN
+            "id": "2", // ISBN
             "title": "Example Listing 2",
             "description": "This is another example listing.",
             "price": 90.00,
@@ -32,7 +32,7 @@ Search for a query in the database. Returns a list of objects with the following
 Get a listing by its ID. Returns an object with the following structure:
 ```json
 {
-    "id": 1, // ISBN
+    "id": "1", // ISBN
     "title": "Example Listing",
     "description": "This is an example listing.",
     "image": "https://example.com/image.jpg",
@@ -53,11 +53,11 @@ Get a listing by its ID. Returns an object with the following structure:
     ],
     "offers": [
         {
-            "id": 1,
+            "id": "1",
             "price": 100.00,
             "date": "2021-01-01T12:00:00Z",
             "seller": {
-                "id": 1, // This ID is currently not assosiated with a user
+                "id": "1", // This ID is currently not assosiated with a user
                 "username": "example"
             },
             "conition": "new",
@@ -65,7 +65,7 @@ Get a listing by its ID. Returns an object with the following structure:
             "location": "Sheffield"
         },
         {
-            "id": 2,
+            "id": "2",
             "price": 90.00,
             "date": "2021-01-01T12:00:00Z",
             "seller": {

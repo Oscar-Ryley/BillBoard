@@ -6,11 +6,10 @@ buy = Blueprint("buy", __name__)
 def buy_route(id):
     """
     Delets the book to the db
-    
+
     Request:
     {
-        "id": 1,
-        "editionID": 1,
+        ""id": "1",
         "seller": 1
     }
     Response:

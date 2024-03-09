@@ -9,8 +9,7 @@ def listing_route(id):
 
     Response:
     {
-        "id": 1,
-        "editionID": 1,
+        "id": "1", // This is the ISBN
         "title": "Example Listing",
         "description": "This is an example listing.",
         "image": "https://example.com/image.jpg",
@@ -31,7 +30,7 @@ def listing_route(id):
         ],
         "offers": [
             {
-                "id": 1,
+                "id": "1",
                 "price": 100.00,
                 "date": "2021-01-01T12:00:00Z",
                 "seller": {
