@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import certifi
 from pymongo import MongoClient
 from typing import List, Dict, Union
 import json
@@ -10,25 +11,29 @@ with open("config.json") as f:
     data = json.load(f)
     MONGO_DB = data["mongodb"]
 
-client = MongoClient(MONGO_DB)
+client = MongoClient(MONGO_DB, tlsCAFile=certifi.where())
 db = client["hackathon"]
 LISTINGS = db["listings"]
+
 
 class BookNotFound(Exception):
     pass
 
+
 class OfferNotFound(Exception):
     pass
+
 
 class Condition(Enum):
     NEW = "new"
     USED = "used"
 
+
 class Listing:
     bookID: str
     title: str
     description: str
-    price: float # Maket price
+    price: float  # Maket price
     image: str
     date: datetime
     offers: List[Offer]
@@ -40,9 +45,10 @@ class Listing:
 
         if listings is None:
             raise BookNotFound(f"Book with ID {book_id} not found.")
-        
+
         for k, v in dict(listings).items():
-            if k == "offers": k="_offers"
+            if k == "offers":
+                k = "_offers"
             setattr(self, k, v)
 
         # Change offers into Offer objects
@@ -61,17 +67,23 @@ class Listing:
         return {
             "new": sum([x["new"] for x in self.prices]) / len(self.prices),
             "used": sum([x["used"] for x in self.prices]) / len(self.prices),
-            "average": (sum([x["new"] for x in self.prices]) + sum([x["used"] for x in self.prices])) / (len(self.prices) * 2)  
+            "average": (
+                sum([x["new"] for x in self.prices])
+                + sum([x["used"] for x in self.prices])
+            )
+            / (len(self.prices) * 2),
         }
-    
+
     @staticmethod
     def all() -> List[Listing]:
         return [Listing(x["bookID"]) for x in LISTINGS.find()]
-    
+
     @staticmethod
     def search(query: str) -> List[Listing]:
-        return [Listing(x["bookID"]) for x in LISTINGS.find({"title": {"$regex": query}})]
-    
+        return [
+            Listing(x["bookID"]) for x in LISTINGS.find({"title": {"$regex": query}})
+        ]
+
     @staticmethod
     def get_editions(book_id: str) -> List[Listing]:
         """Fetch data about the one book, find its editions, then return all those listings including the same book"""
@@ -85,16 +97,28 @@ class Listing:
 
         return l
 
-    
     def add_offer(self, offer: Offer) -> None:
-        LISTINGS.update_one({"bookID": self.bookID}, {"$push": {"offers": offer.to_json()}})
+        LISTINGS.update_one(
+            {"bookID": self.bookID}, {"$push": {"offers": offer.to_json()}}
+        )
 
     def remove_offer(self, offer: Offer) -> None:
         # for off in self.offers:
         #     if off.seller["id"] == offer.seller["id"]:
         #         del off
 
-        LISTINGS.update_one({"bookID": self.bookID}, {"$set": {"offers": [o.to_json() for o in self.offers if o.seller["id"] != offer.seller["id"]]}})
+        LISTINGS.update_one(
+            {"bookID": self.bookID},
+            {
+                "$set": {
+                    "offers": [
+                        o.to_json()
+                        for o in self.offers
+                        if o.seller["id"] != offer.seller["id"]
+                    ]
+                }
+            },
+        )
 
     def to_json(self):
         return {
@@ -105,7 +129,7 @@ class Listing:
             "marketPrize": self.price,
             "prices": self.prices,
             "offers": [offer.to_json() for offer in self.offers],
-            "editions": self.editions
+            "editions": self.editions,
         }
 
 
@@ -127,20 +151,20 @@ class Offer:
             if offer.seller["id"] == seller:
                 offer.condition = Condition(offer.condition)
                 return offer
-            
+
         raise OfferNotFound(f"Offer with ID {seller} not found.")
-    
+
     @staticmethod
     def new(
-        bookID: str, 
-        *, 
-        price: float, 
-        condition: Condition, 
-        notes: str, 
-        location: str, 
+        bookID: str,
+        *,
+        price: float,
+        condition: Condition,
+        notes: str,
+        location: str,
         date: datetime,
         seller: Dict[str, Union[int, str]],
-        **_
+        **_,
     ) -> Offer:
         return Offer(
             bookID=bookID,
@@ -149,15 +173,19 @@ class Offer:
             notes=notes,
             location=location,
             date=date,
-            seller=seller
+            seller=seller,
         )
-    
+
     def to_json(self):
         return {
             "price": self.price,
-            "condition": self.condition.value if hasattr(self.condition, "value") else self.condition,
+            "condition": (
+                self.condition.value
+                if hasattr(self.condition, "value")
+                else self.condition
+            ),
             "notes": self.notes,
             "location": self.location,
             "date": self.date,
-            "seller": self.seller
+            "seller": self.seller,
         }

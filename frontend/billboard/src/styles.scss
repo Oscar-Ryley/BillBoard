@@ -5,6 +5,7 @@
     --primary: #1ebfeb;
     --secondary: #7d77f3;
     --accent: #ffe841;
+    --secondary-dark: #3229d0;
 }
 
 *,
@@ -55,6 +56,7 @@ h4 {
 
 h5 {
     font-size: 1.333rem;
+    color: var(--secondary-dark);
     /* 21.28px */
 }
 
@@ -79,10 +81,6 @@ hr {
     border: none;
     border-radius: 1rem;
     background: linear-gradient(to right, var(--primary), var(--secondary));
-}
-
-.material-symbols-outlined {
-    vertical-align: middle;
 }
 
 #logo {
