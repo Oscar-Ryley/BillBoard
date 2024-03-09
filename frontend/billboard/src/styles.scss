@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Kanit|Varela');
 
 :root {
+    --background: #f8fcfd;
     --primary: #1ebfeb;
     --secondary: #7d77f3;
     --accent: #ffe841;
@@ -12,6 +13,10 @@ body {
     font-weight: 400;
 }
 
+body {
+    background-color: var(--background);
+}
+
 h1,
 h2,
 h3,
@@ -19,6 +24,7 @@ h4,
 h5 {
     font-family: 'Kanit';
     font-weight: 500;
+    margin: 1rem 0;
 }
 
 html {
@@ -57,6 +63,33 @@ small {
     /* 12px */
 }
 
+table {
+    text-align: left;
+    border-collapse: collapse;
+
+    th,
+    td {
+        // border: 1px solid black;
+        padding: 0.2rem 0.5rem;
+    }
+}
+
+hr {
+    height: 3px;
+    border: none;
+    border-radius: 1rem;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+}
+
 .material-symbols-outlined {
     vertical-align: middle;
+}
+
+#logo {
+    user-select: none;
+    margin: 0;
+
+    :hover {
+        cursor: pointer;
+    }
 }
