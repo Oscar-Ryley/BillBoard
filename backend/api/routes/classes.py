@@ -60,6 +60,11 @@ class Listing:
     def search(query: str) -> List[Listing]:
         return [Listing(x) for x in listings.find({"title": {"$regex": query}})]
     
+    @staticmethod
+    def editions(book_id: str) -> List[Listing]:
+        """Fetch data about the one book, find its editions, then return all those listings including the same book"""
+        return [first:=Listing(book_id), [Listing(x) for x in first.editions]]
+    
     def add_offer(self, offer: Offer) -> None:
         listings.update_one({"bookID": self.bookID}, {"$push": {"offers": offer.to_json()}})
 
