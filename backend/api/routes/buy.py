@@ -6,7 +6,7 @@ buy = Blueprint("buy", __name__)
 @buy.route("/buy", methods=["POST"])
 def buy_route():
     """
-    Delets the book to the db
+    Deletes the book to the db
 
     Request:
     {

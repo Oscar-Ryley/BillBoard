@@ -32,6 +32,15 @@ export type Listing = {
   title: string;
 };
 
+interface BuyRequest {
+  id: string;
+  seller: number;
+}
+
+interface BuyResponse {
+  success: boolean;
+}
+
 export type SearchResults = { results: Listing[]; };
 
 @Injectable({
@@ -62,5 +71,23 @@ export class ApiService {
     if (!response) { return null; }
     const body = await response.json();
     return body as SearchResults;
+  }
+
+  public async buy(buyRequest: BuyRequest): Promise<BuyResponse | null> {
+    const response = await fetch(this.url + '/buy', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(buyRequest)
+    });
+
+    if (!response.ok) {
+      console.error("Book purchase failed:", response.status);
+      return null;
+    }
+
+    const body = await response.json();
+    return body as BuyResponse;
   }
 }
