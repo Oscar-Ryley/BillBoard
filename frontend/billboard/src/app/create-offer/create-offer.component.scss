@@ -3,10 +3,23 @@ form {
     display: flex;
     flex-direction: column;
     width: 80%;
+    gap: 1rem;
+
 
     >* {
         margin: auto;
     }
 }
 
-input {}
+input {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+button {
+    border: none;
+    background: linear-gradient(to top left, var(--primary), var(--secondary));
+    padding: 1rem;
+    border-radius: 1rem;
+    color: white;
+}
