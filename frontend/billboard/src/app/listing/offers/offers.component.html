@@ -1,0 +1,11 @@
+<table>
+    @for (offer of offers; track $index) {
+        <tr>
+            <td>{{offer.condition}}</td>
+            <th>{{offer.price | currency: 'GBP'}}</th>
+            <td>{{offer.location}}</td>
+            <td>{{offer.seller.username}}</td>
+            <!-- <td>{{offer.date}}</td> -->
+        </tr>
+    }
+</table>

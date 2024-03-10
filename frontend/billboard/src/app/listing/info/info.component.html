@@ -1,7 +1,11 @@
 <table>
     <tr>
-        <th>Page Count</th>
-        <td>398</td>
+        <th>Market Price</th>
+        <td>{{listing!.marketPrize | currency: 'GBP'}}</td>
+    </tr>
+    <tr>
+        <th>ISBN</th>
+        <td>{{listing!.id}}</td>
     </tr>
     <tr>
         <th>Version</th>
@@ -12,7 +16,9 @@
         <td>23/04/2020</td>
     </tr>
     <tr>
-        <th>ISBN</th>
-        <td>9781108455145</td>
+        <th>Editions</th>
+        <td>{{listing!.editions.join(', ')}}</td>
     </tr>
 </table>
+
+<p>{{listing!.description}}</p>
