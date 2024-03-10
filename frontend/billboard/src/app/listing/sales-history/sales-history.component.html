@@ -1,1 +1,7 @@
+<svg id="graph" width="20rem" height="10rem">
+    @for (line of lines; track $index) {
+        <line [attr.x1]="line.x1" [attr.y1]="line.y1" [attr.x2]="line.x2" [attr.y2]="line.y2" style="stroke:black;stroke-width:1"/>
+    }
+</svg>
+
 <img height="200px" src="https://compote.slate.com/images/926e5009-c10a-48fe-b90e-fa0760f82fcd.png?crop=680%2C453%2Cx0%2Cy0" alt="stonks">

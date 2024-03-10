@@ -16,5 +16,16 @@ table {
     td,
     th {
         padding: 0.5rem;
+        height: 8rem;
+
+        img {
+            width: 6rem;
+            height: 6rem;
+            object-fit: contain;
+        }
+    }
+
+    td {
+        text-align: center;
     }
 }

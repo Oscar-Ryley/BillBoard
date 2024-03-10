@@ -1,8 +1,14 @@
 <table>
     @for (listing of this.results; track $index) {
         <tr (click)="showListing(listing.id)">
-            <th>{{listing.title}}</th>
-            <td>{{listing.prices[0].average | currency: 'GBP'}}</td>
+            <th>
+                <div>{{listing.title}}</div>
+                <div><small>{{listing.description}}</small></div>
+            </th>
+            <td>
+                <img src="{{listing.image}}" alt="Book cover">
+                <span>{{listing.prices[0].average | currency: 'GBP'}}</span>
+            </td>
         </tr>
     }
 </table>
