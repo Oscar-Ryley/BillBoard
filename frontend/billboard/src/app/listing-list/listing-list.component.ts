@@ -19,6 +19,11 @@ export class ListingListComponent implements OnInit {
     this.apiService.all().then((data) => {
       this.results = data!.results;
     });
+    this.apiService.listingListSubject.subscribe({
+      next: (data) => {
+        this.results = data.results;
+      }
+    });
   }
 
   showListing(listingId: string) {

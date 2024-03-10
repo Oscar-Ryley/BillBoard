@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 export type Seller = {
   id: number;
@@ -91,6 +92,8 @@ export class ApiService {
     "title": "Introduction to Finance: Markets, Investments, and Financial Management"
   };
 
+  public listingListSubject = new Subject<SearchResults>();
+
   constructor() {}
 
   public async search(query: string): Promise<SearchResults | null> {
@@ -130,5 +133,11 @@ export class ApiService {
 
     const body = await response.json();
     return body as BuyResponse;
+  }
+
+  public searchAndDisplay(query: string) {
+    this.search(query).then((data) => {
+      this.listingListSubject.next(data!);
+    });
   }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-search',
@@ -11,10 +12,12 @@ import { FormsModule } from '@angular/forms';
 export class SearchComponent {
   public query: string = '';
 
+  constructor(private apiService: ApiService) {}
+
   public onKeyDown(event: KeyboardEvent) {
     if (event.code == 'Enter') {
       if (this.query.trim() !== '') {
-        console.log(this.query);
+        this.apiService.searchAndDisplay(this.query);
       }
     }
   }
