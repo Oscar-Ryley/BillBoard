@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService, Listing } from '../api.service';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 })
 export class ListingListComponent implements OnInit {
   public results: Listing[] | undefined;
-  public all: boolean = true;
 
   constructor(private apiService: ApiService, private router: Router) {}
 

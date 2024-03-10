@@ -120,3 +120,9 @@ button {
         cursor: pointer;
     }
 }
+
+header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
