@@ -5,6 +5,7 @@
             <th>{{offer.price | currency: 'GBP'}}</th>
             <td>{{offer.location}}</td>
             <td>{{offer.seller.username}}</td>
+            <td><button (click)="buy(offer)">Buy</button></td>
             <!-- <td>{{offer.date}}</td> -->
         </tr>
     }

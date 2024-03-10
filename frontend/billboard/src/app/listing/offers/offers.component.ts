@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Offer } from '../../api.service';
+import { ApiService, Offer } from '../../api.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,4 +11,11 @@ import { CommonModule } from '@angular/common';
 })
 export class OffersComponent {
   @Input() offers: Offer[] = [];
+
+  constructor(private apiService: ApiService) {}
+
+  buy(offer: Offer) {
+    // @ts-ignore
+    this.apiService.buy({ id: this.apiService.listing.id, seller: offer.seller.id });
+  }
 }

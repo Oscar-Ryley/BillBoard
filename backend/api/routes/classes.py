@@ -112,9 +112,7 @@ class Listing:
             {
                 "$set": {
                     "offers": [
-                        o.to_json()
-                        for o in self.offers
-                        if o.seller["id"] != offer.seller["id"]
+                        o.to_json() for o in self.offers if o.seller != offer.seller
                     ]
                 }
             },
@@ -148,8 +146,12 @@ class Offer:
     @staticmethod
     def from_listing(listing: Listing, seller: int) -> Offer:
         for offer in listing.offers:
-            if offer.seller["id"] == seller:
-                offer.condition = Condition(offer.condition)
+            if offer.seller == seller:
+                offer.condition = (
+                    Condition(offer.condition)
+                    if hasattr(Condition, offer.condition)
+                    else Condition("new")
+                )
                 return offer
 
         raise OfferNotFound(f"Offer with ID {seller} not found.")

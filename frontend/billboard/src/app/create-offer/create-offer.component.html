@@ -1,0 +1,54 @@
+<form #createOfferForm="ngForm" (ngSubmit)="submitForm(createOfferForm)">
+    <h2>Create Offer</h2>
+
+    <div class="danger">
+        <small>*</small>
+        @if (bookID.dirty || bookID.touched) {
+            @if (bookID.getError('required')) {
+                <small>ISBN is required.</small>
+            }
+        }
+    </div>
+    <input name="bookID" type="number" placeholder="ISBN" #bookID="ngModel" required [(ngModel)]="formData.bookID">
+
+    <div class="danger">
+        <small>*</small>
+        @if (price.dirty || price.touched) {
+            @if (price.getError('required')) {
+                <small>Price is required.</small>
+            }
+        }
+    </div>
+    <input name="price" type="number" placeholder="£10" required #price="ngModel" [(ngModel)]="formData.price">
+
+    <fieldset required>
+        @for (c of conditions; track $index) {
+            <label for="{{c.value}}">{{c.name}}</label>
+            <input id="{{c.value}}" value="{{c.value}}" type="radio" name="condition" [(ngModel)]="conditions[$index].selected">
+        }
+    </fieldset>
+
+    <input type="text" maxlength="200" name="notes" placeholder="Notes..." #notes="ngModel" [(ngModel)]="formData.notes">
+
+    <div class="danger">
+        <small>*</small>
+        @if (location.dirty || location.touched) {
+            @if (location.getError('required')) {
+                <small>Location is required.</small>
+            }
+        }
+    </div>
+    <input name="location" type="text" placeholder="Sheffield" required #location="ngModel" [(ngModel)]="formData.location">
+
+    <div class="danger">
+        <small>*</small>
+        @if (seller.dirty || seller.touched) {
+            @if (seller.getError('required')) {
+                <small>Seller ID is required.</small>
+            }
+        }
+    </div>
+    <input name="seller" type="number" placeholder="Seller ID" #seller="ngModel" required [(ngModel)]="formData.seller">
+
+    <button type="submit">Submit</button>
+</form>

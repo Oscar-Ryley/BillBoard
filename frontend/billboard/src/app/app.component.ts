@@ -19,4 +19,8 @@ export class AppComponent {
   navigateHome() {
     this.router.navigate(['']);
   }
+
+  createOfferPage() {
+    this.router.navigate(['/create-offer']);
+  }
 }

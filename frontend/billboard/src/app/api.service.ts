@@ -117,6 +117,17 @@ export class ApiService {
     return body as SearchResults;
   }
 
+  public async create(data: any) {
+    await fetch(this.url + '/create',
+      {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  }
+
   public async buy(buyRequest: BuyRequest): Promise<BuyResponse | null> {
     const response = await fetch(this.url + '/buy', {
       method: 'POST',
