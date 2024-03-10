@@ -1,0 +1,55 @@
+:host {
+    background: linear-gradient(to top left, rgba(255, 88, 238, 0.5), rgba(54, 158, 255, 0.5));
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    flex-grow: 1;
+}
+
+#graph {
+    background-color: var(--background);
+    border-radius: 0.5rem;
+}
+
+.highlight {
+    fill: var(--secondary);
+}
+
+#info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#slider {
+    margin: 0 1rem;
+}
+
+#slider {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.5);
+    height: 1rem;
+}
+
+#slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 2rem;
+    height: 2rem;
+    background: linear-gradient(to top left, var(--primary), var(--secondary));
+    border-radius: 50%;
+    z-index: 1;
+}
+
+#slider::-moz-range-thumb {
+    width: 2rem;
+    height: 2rem;
+    background: linear-gradient(to top left, var(--primary), var(--secondary));
+    border-radius: 50%;
+    z-index: 1;
+}

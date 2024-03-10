@@ -1,7 +1,16 @@
-<svg id="graph" width="20rem" height="10rem">
+<svg id="graph">
     @for (line of lines; track $index) {
-        <line [attr.x1]="line.x1" [attr.y1]="line.y1" [attr.x2]="line.x2" [attr.y2]="line.y2" style="stroke:black;stroke-width:1"/>
+        <line [attr.x1]="line.x1" [attr.y1]="line.y1" [attr.x2]="line.x2" [attr.y2]="line.y2" style="stroke:black;stroke-width:2"/>
+    }
+    @for (point of normPoints; track $index) {
+        <ellipse [ngClass]="$index == current ? 'highlight' : ''" [attr.cx]="point.x" [attr.cy]="point.y" [attr.rx]="10" [attr.ry]="10"/>
     }
 </svg>
+
+<input id="slider" type="range" min="{{0}}" max="{{x.length - 1}}" value="{{current}}" [(ngModel)]="current">
+
+<div id="info">
+    <span id="price">{{prices[current].average | currency: 'GBP'}}</span><span id="date">{{prices[current].date}}</span>
+</div>
 
 <img height="200px" src="https://compote.slate.com/images/926e5009-c10a-48fe-b90e-fa0760f82fcd.png?crop=680%2C453%2Cx0%2Cy0" alt="stonks">

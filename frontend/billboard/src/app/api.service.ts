@@ -48,7 +48,48 @@ export type SearchResults = { results: Listing[]; };
 })
 export class ApiService {
   public url = 'http://127.0.0.1:5000';
-  public listing: Listing | undefined;
+  public listing: Listing = {
+    "description": "A balanced introduction to the three major areas of finance: institutions and markets, investments, and financial management.",
+    "editions": [
+      "1119561175"
+    ],
+    "id": "1119561175",
+    "image": "https://m.media-amazon.com/images/I/71ihZf6-kcL._SL1500_.jpg",
+    "marketPrize": 125.65,
+    "offers": [
+      {
+        "condition": "used",
+        "date": "Sat, 09 Mar 2024 16:49:32 GMT",
+        "location": "Durham",
+        "notes": null,
+        "price": 44.95,
+        "seller": {
+          "id": 1,
+          "username": "samjohnson"
+        }
+      },
+      {
+        "condition": "new",
+        "date": "2021-01-01T12:00:00Z",
+        "location": "Sheffield",
+        "notes": null,
+        "price": 49.99,
+        "seller": {
+          "id": 69,
+          "username": "Erik"
+        }
+      }
+    ],
+    "prices": [
+      {
+        "average": 44.83,
+        "date": "Sat, 09 Mar 2024 16:49:32 GMT",
+        "new": 59.95,
+        "used": 30.0
+      }
+    ],
+    "title": "Introduction to Finance: Markets, Investments, and Financial Management"
+  };
 
   constructor() {}
 
