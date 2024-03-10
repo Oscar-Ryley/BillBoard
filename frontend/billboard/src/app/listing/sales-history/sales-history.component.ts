@@ -44,6 +44,22 @@ export class SalesHistoryComponent {
     }
   ];
 
+  constructor() {
+    const newPoints = [];
+    for (let i = 1; i < 6; i++) {
+      let point = {
+        new: 40,
+        used: 40,
+        date: '',
+        average: 0
+      };
+      point.date = `0${i}/01/2024`;
+      point.average = parseFloat((50 * Math.random()).toString());
+      newPoints.push(point);
+    }
+    this.prices = newPoints;
+  }
+
   private padding: number = 0.1;
   public current: number = this.prices.length - 1;
 

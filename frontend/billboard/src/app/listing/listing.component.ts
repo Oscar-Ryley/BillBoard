@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { InfoComponent } from './info/info.component';
 import { ImageComponent } from "./image/image.component";
-import { ListingListComponent } from "../listing-list/listing-list.component";
 import { SalesHistoryComponent } from "./sales-history/sales-history.component";
 import { ApiService } from '../api.service';
-import { OffersComponent } from "./offers/offers.component";
+import { OffersComponent } from './offers/offers.component';
 
 @Component({
   selector: 'app-listing',
