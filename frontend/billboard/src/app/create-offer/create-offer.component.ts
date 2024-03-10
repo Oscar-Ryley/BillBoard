@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
 
 type CreateOfferFormData = {
   bookID: number;
@@ -35,7 +36,7 @@ export class CreateOfferComponent {
     { name: 'Used', value: 'used', selected: false }
   ];
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
   submitForm(form: NgForm) {
     if (!form.valid) {
@@ -45,6 +46,7 @@ export class CreateOfferComponent {
       this.formData.date = new Date().toISOString();
       this.formData.seller = { id: parseInt(this.formData.seller), username: 'Admin' };
       this.apiService.create(this.formData);
+      this.router.navigate(['']);
     }
   }
 }
